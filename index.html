@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,700italic,800,800italic,700,600italic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+  <!-- Styles -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body ng-app="jeopardyApp">
+  <div class="main container" ng-controller="MainController">
+    <h1>{{ title }}</h1>
+    <div class="row">
+      <div class="intro col-md-7">
+        <h3>Do you think you could be/are a jeopardy champion?</h3>
+        <h3>Do you think you could stick it to Trebek?</h3>
+      </div>
+      <div class="score col-md-5">
+        <div>
+          <h3>Your Score:</h3>
+          <ul>
+            <li class="right">{{ correct }}</li>
+            <li class="wrong">{{ wrong }}</li>
+          </ul>
+          <br class="clear">
+        </div>
+        <div>
+          <h3>Dollar Amount: {{ winnings | currency }}</h3>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="capitalize">C: {{ question.category.title }}
+        <h4>Q: {{ question.question }}...</h4>
+        <p>V: {{ question.value | currency }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 answering-box">
+        <div ng-hide="showanswer">
+          <p>What do you think the answer is?</p>
+          <p>
+            What is: <input class="answer-field" type="text" placeholder="Enter your answer here..." ng-model="answer" /><br />
+            <button type="submit" ng-click="answerBtn()">Submit Answer</button><br />
+            *Please note answers must be exact.
+          </p>
+        </div>
+        <div ng-show="showanswer">
+          <div>{{ answer }}</div>
+          <div>
+            <button ng-click="newQuestion()">New Question</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>Little fun bit of Angular. See the code on <a href="https://github.com/greenygh0st/angular-jeopardy">GitHub</a>. Special thanks to <a href="http://jservice.io/">jservice.io</a> for making this all possible. :)<br />
+    **YES. I know I spelled Jeopardy wrong... ;)</p>
+  </footer>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/MainController.js"></script>
+  <script src="js/services/aquestion.js"></script>
+</body>
+</html>
