@@ -43,7 +43,7 @@ app.controller('MainController', ['$scope', '$http', 'aquestion', function($scop
       $scope.showanswer = true;
     }
     else {
-      $scope.answer = "Wrong! Your answer was: \""+ $scope.answer +"\" The correct answer was: " + $scope.question.answer;
+      $scope.answer = "Wrong! Your answer was: " + $scope.answer + " The correct answer was: " + $scope.question.answer;
       $scope.wrong += 1;
       $scope.winnings -= $scope.question.value
       $scope.showanswer = true;
