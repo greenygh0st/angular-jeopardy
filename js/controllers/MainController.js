@@ -10,9 +10,31 @@ app.controller('MainController', ['$scope', '$http', 'aquestion', function($scop
   });
 
   $scope.answerBtn = function () {
-    if ($scope.answer.toLowerCase() == $scope.question.answer.toLowerCase())
+    likeness_points = 0;
+    possible_points = 0; //not sure if this will be used...this could also be a pain
+    your_answer = $scope.answer.toLowerCase().split(" ")
+    the_answer = $scope.question.answer.toLowerCase().split(" ")
+
+    for (i = 0; i < the_answer.length; i++)
     {
-      $scope.answer = "Correct! The answer was: " + $scope.question.answer;
+      //get a total possible points score
+      if (your_answer[i] != "the" || your_answer[i] != "an")
+      {
+        possible_points += 1;
+      }
+    }
+
+    for (i = 0; i < your_answer.length; i++)
+    {
+      if ((your_answer[i] != "the" || your_answer[i] != "an") && $.inArray(your_answer[i], the_answer) != -1)
+      {
+        likeness_points += 1; //so basically if you get one word right I am going to give you credit. :D
+      }
+    }
+
+    if (likeness_points >= 1) //original code - $scope.answer.toLowerCase() == $scope.question.answer.toLowerCase()
+    {
+      $scope.answer = "Correct! Your answer was: "+  +" The answer was: " + $scope.question.answer;
       $scope.correct += 1;
       $scope.winnings += $scope.question.value
       $scope.showanswer = true;
