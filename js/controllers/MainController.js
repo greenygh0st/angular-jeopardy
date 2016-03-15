@@ -37,7 +37,7 @@ app.controller('MainController', ['$scope', '$http', 'aquestion', function($scop
     //so basically if you get one word right I am going to give you credit. :D
     if (likeness_points >= 1) //original code - $scope.answer.toLowerCase() == $scope.question.answer.toLowerCase()
     {
-      $scope.answer = "Correct! Your answer was: "+  +" The answer was: " + $scope.question.answer;
+      $scope.answer = "Correct! Your answer was: "+ $scope.answer +" The answer was: " + $scope.question.answer;
       $scope.correct += 1;
       $scope.winnings += $scope.question.value
       $scope.showanswer = true;
